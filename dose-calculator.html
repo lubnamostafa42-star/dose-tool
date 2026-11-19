@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>حاسبة جرعات علاج البلهارسيا والطفيليات المعوية</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#eef5f0;--cd:#fff;--tx:#1f2e25;--mu:#5a6e62;--pr:#2f7a52;--pl:#dcefe3;--bd:#c6dccd;--wb:#fff3dc;--wt:#6e4300;--eb:#fdeaea;--et:#8f1d1d;--ok:#e8f3ec;--ot:#1d5a35;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#101a14;--cd:#18241d;--tx:#e6f1ea;--mu:#9db3a5;--pr:#6fcf9a;--pl:#223a2d;--bd:#2f4a3b;--wb:#3a2f15;--wt:#f1d28f;--eb:#3d2025;--et:#f4b7b7;--ok:#1f3427;--ot:#a7dbbb;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#101a14;--cd:#18241d;--tx:#e6f1ea;--mu:#9db3a5;--pr:#6fcf9a;--pl:#223a2d;--bd:#2f4a3b;--wb:#3a2f15;--wt:#f1d28f;--eb:#3d2025;--et:#f4b7b7;--ok:#1f3427;--ot:#a7dbbb;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.7 Cairo,Tahoma,Arial,sans-serif}
+main{max-width:640px;margin:0 auto;padding:18px 14px 40px}
+h1{font-size:1.35rem;margin:6px 0 2px;color:var(--pr)}
+.cr{font-size:.74rem;color:var(--mu);margin:0 0 4px}
+.sub{color:var(--mu);font-size:.88rem;margin:0 0 14px}
+.card{background:var(--cd);border:1px solid var(--bd);border-radius:14px;padding:14px;margin-bottom:14px}
+.g{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+label{display:block;font-size:.85rem;font-weight:600;margin:8px 0 3px}
+input,select{width:100%;font:inherit;padding:9px 10px;border:1px solid var(--bd);border-radius:10px;background:var(--bg);color:var(--tx)}
+input:focus-visible,select:focus-visible,button:focus-visible{outline:2px solid var(--pr);outline-offset:1px}
+.hint{font-size:.78rem;color:var(--mu);margin-top:3px;min-height:1.2em}
+.ph{background:var(--pl);border-radius:10px;padding:10px 12px;margin:8px 0}
+.big{font-size:1.15rem;font-weight:700;color:var(--pr)}
+.meta{font-size:.9rem}
+.box{border-radius:10px;padding:9px 12px;margin:8px 0;font-size:.88rem}
+.w{background:var(--wb);color:var(--wt)}.e{background:var(--eb);color:var(--et)}.o{background:var(--ok);color:var(--ot)}
+.rx{background:var(--bg);border:1px dashed var(--bd);border-radius:10px;padding:10px 12px;font-size:.92rem;white-space:pre-line}
+button{font:inherit;font-weight:600;background:var(--pr);color:#fff;border:0;border-radius:10px;padding:9px 16px;margin-top:8px;cursor:pointer}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) button{color:#0f2018}}
+:root[data-theme="dark"] button{color:#0f2018}
+.foot{font-size:.78rem;color:var(--mu);text-align:center}
+</style>
+</head>
+<body>
+<main>
+<h1>حاسبة جرعات علاج البلهارسيا والطفيليات المعوية</h1>
+<div class="cr">طبقًا لتعليمات الوزارة · تصميم د. لبنى مصطفى محمد · إدارة طهطا</div>
+<p class="sub">حسب تعليمات وزارة الصحة والسكان (النسخة المحدثة). أداة مساعدة، والقرار النهائي للطبيب.</p>
+<div class="card">
+<div class="g">
+<div><label for="age">السن</label><input id="age" type="number" min="0" step="any" inputmode="decimal"></div>
+<div><label for="au">وحدة السن</label><select id="au"><option value="1">سنة</option><option value="0.0833333">شهر</option></select></div>
+<div><label for="wt">الوزن (كجم)</label><input id="wt" type="number" min="0" step="any" inputmode="decimal"></div>
+<div><label for="sp">حالة خاصة</label><select id="sp"><option value="">لا يوجد</option><option value="preg">حامل</option><option value="lact">مرضعة</option></select></div>
+</div>
+<label for="par">التشخيص (الطفيل)</label><select id="par"></select>
+<label for="drg">المادة الفعالة</label><select id="drg"></select>
+<div class="g">
+<div><label for="frm">الشكل الدوائي</label><select id="frm"></select></div>
+<div><label for="con" id="cl">التركيز</label><input id="con" type="number" min="0" step="any" inputmode="decimal"></div>
+</div>
+<div class="g"><div><label for="pk" id="pl">عدد الأقراص في الشريط/العلبة</label><input id="pk" type="number" min="1" step="any" inputmode="decimal"></div></div>
+<div class="hint">أدخل السن والوزن والإصابة، واختر المادة الفعالة والتركيز لتظهر الجرعة الصحيحة.</div>
+</div>
+<div id="res"></div>
+<p class="foot">الجرعات منقولة من بروتوكول الوزارة كما هو. راجع دائمًا النتيجة مع البروتوكول. الطبيب مسئول عن أي عدم مطابقة للبروتوكول.</p>
+<p class="foot">تصميم د. لبنى مصطفى محمد - إدارة طهطا</p>
+</main>
+<script>
+const $=i=>document.getElementById(i),Q=x=>Math.round(x*4)/4,O=(mg,pd,d,l)=>({mg,pd,d,l}),E=e=>({e});
+const D={alb:{n:'ألبندازول',t:400,s:100},meb:{n:'مبندازول',t:100,s:100},flu:{n:'فلوبندازول',t:100,s:100},mb5:{n:'ميبندازول (قرص 500 مجم — جرعة واحدة)',t:500},prz:{n:'برازيكوانتيل',t:600},egt:{n:'تريكلابندازول',t:250},nit:{n:'نيتازوكسانيد',t:500,s:100},nic:{n:'نيكلوزاميد',t:500},met:{n:'ميترونيدازول',t:500,s:200}};
+const PK={alb:[2,20],meb:[6,30],flu:[6,30],prz:[4],egt:[],mb5:[],nit:[,60],nic:[4],met:[10,100]};
+const A={vermin:'meb',vermox:'meb',fluver:'flu',zentel:'alb',eskazole:'alb',epiquantel:'prz',epicantel:'prz',biltricide:'prz',egaten:'egt',nanazoxid:'nit',alinia:'nit',yomesan:'nic',flagyl:'met',amrizole:'met'};
+const nD=a=>a>=12?500:a>=4?200:a>=1?100:0;
+const nit=a=>nD(a)?{p:[O(nD(a),2,3)]}:E('نيتازوكسانيد: البروتوكول يبدأ من عمر سنة');
+const alb1=a=>a<2?E('ألبندازول: البروتوكول للأطفال فوق سنتين فقط'):{p:[O(400,1,1)]};
+const mb3=()=>({p:[O(100,2,3)]}),mb3n=()=>({p:[O(100,2,3)],n:'بديل في البروتوكول: 500 مجم مرة واحدة.'});
+const m5=()=>({p:[O(500,1,1)]});
+const sth={alb:alb1,meb:mb3n,flu:mb3};
+const rep='تكرر الجرعة بعد أسبوعين مع علاج جميع أفراد الأسرة في نفس الوقت.';
+const nicH=(a,w)=>({n:'يمضغ جيدًا ثم يبلع.',...(a>=18?{p:[O(2000,1,7)]}:w<11?{e:'نيكلوزاميد: البروتوكول يبدأ من 11 كجم'}:w<=34?{p:[O(1000,1,1,'اليوم الأول'),O(500,1,6,'الأيام التالية')]}:{p:[O(1500,1,1,'اليوم الأول'),O(1000,1,6,'الأيام التالية')]})});
+const am='';
+const eT=(a,w,n)=>w<15?E('برازيكوانتيل: الجدول يبدأ من 15 كجم'):n;
+const R={
+hook:{n:'الإنكلستوما',d:{...sth,mb5:m5}},asc:{n:'الإسكاريس',d:{...sth,mb5:m5}},trs:{n:'تريكو سترونجيلس',d:sth},
+tri:{n:'الترايكورس ترايكورا',d:{alb:()=>({p:[O(400,1,3)]}),meb:mb3,flu:mb3}},
+str:{n:'الاسترنجلويدس',d:{alb:()=>({p:[O(400,2,7)],w:'تنبيه: راجع أحدث مراجع CDC لخط العلاج الأول لهذا الطفيل.'}),meb:()=>({p:[O(100,2,3)],w:'تنبيه: هذا الدواء غير مذكور في مراجع CDC لهذا الطفيل.'}),flu:()=>({p:[O(100,2,3)],w:'تنبيه: هذا الدواء غير مذكور في مراجع CDC لهذا الطفيل.'})}},
+ent:{n:'الإكسيورس',d:{alb:()=>({p:[O(400,1,1)],n:rep}),meb:()=>({p:[O(100,1,1)],n:rep}),flu:()=>({p:[O(100,1,1)],n:rep})}},
+hym:{n:'هيمنولبس نانا / دمنيوتا',d:{prz:(a,w)=>({p:[O(25*w,1,1)]}),nic:nicH}},
+tae:{n:'التينيا',d:{prz:(a,w)=>({p:[O(10*w,1,1)],n:'البروتوكول 5 إلى 10 مجم/كجم، والحساب هنا على 10.'}),nic:(a,w)=>({p:[O(a>=18?2000:Math.min(50*w,2000),1,1)],n:'يمضغ جيدًا ثم يبلع.'}),alb:()=>({p:[O(400,1,3)]})}},
+amo:{n:'أنتاميبا هستوليتيكا',d:{met:(a,w)=>({p:[a>=12?O(500,3,10):O(50*w/3,3,10)],n:am}),nit}},
+gia:{n:'جيارديا لامبليا',d:{met:(a,w)=>a>=12?{p:[O(500,3,7)],w:'للكبار: يصرف قرص 500 مجم كامل بدل 250 مجم لأن القرص لا يقسم، وهو أعلى من جرعة البروتوكول (250 مجم).'}:{p:[O(25*w/3,3,7)],w:'جرعة الأطفال 25 مجم/كجم/يوم أعلى من المعتاد في المراجع (حوالي 15). راجعها.'},nit}},
+sch:{n:'البلهارسيا (بولية / معوية)',d:{prz:(a,w)=>({p:[O(Math.min(2400,40*w),1,1,'جرعة واحدة بعد الأكل')],n:'يبلع القرص كاملًا دون مضغ. الفحص بعد 90 يومًا، وتعاد الجرعة إن كان إيجابيًا.'})}},
+fas:{n:'الفاشيولا (الدودة الكبدية)',d:{egt:(a,w)=>{if(a<6)return E('إيجاتين: البروتوكول لفوق 6 سنوات');return{p:[O(Math.min(1000,10*w),2,1,'صباحًا ومساءً بفاصل 12 ساعة')],n:'الجرعة اليومية 20 مجم/كجم ('+Math.round(20*w)+' مجم) على جرعتين: 10 مجم/كجم ('+Math.round(10*w)+' مجم) صباحًا و10 مجم/كجم مساءً بفاصل 12 ساعة. تؤخذ بعد الأكل وتبلع بالماء دون مضغ. موانع: الفشل الكبدي وأنيميا الفول.',w:a>60?'البروتوكول يحدد العمر حتى 60 سنة. راجع الطبيب.':(w>100?'الوزن أعلى من 100 كجم: الجرعة بالحد الأقصى 4 أقراص في المرة.':'')}},nit:a=>a>=12?{p:[O(500,2,7)],n:'يستخدم في الحالات المزمنة أو عند عدم الاستجابة أو عدم توافر العلاج الأول.'}:{p:[O(100,2,7)],w:'البروتوكول يكتب للأطفال 5 مل كل 12 ساعة دون تفصيل بالسن. راجع الطبيب.'}}},
+het:{n:'الهتروفس',d:{prz:(a,w)=>({p:[O(Math.min(1500,25*w),3,1,'اليوم كله بعد الأكل')],n:'يعاد فحص البراز بعد أسبوعين وتكرر الجرعة لمن يثبت إيجابيته.'})}}
+};
+const par=$('par'),drg=$('drg'),frm=$('frm');
+par.innerHTML=Object.keys(R).map(k=>`<option value="${k}">${R[k].n}</option>`).join('');
+function fillD(keep){drg.innerHTML=Object.keys(R[par.value].d).map(k=>`<option value="${k}">${D[k].n}${D[k].s?' — أقراص وشراب':''}</option>`).join('');if(keep&&R[par.value].d[keep])drg.value=keep;fillF()}
+function fillF(){const d=D[drg.value],o=frm.value;frm.innerHTML='<option value="t">أقراص</option>'+(d.s?'<option value="s">شراب</option>':'');if(o==='s'&&d.s)frm.value='s';setC()}
+function setC(){const d=D[drg.value];$('con').value=frm.value==='s'?d.s:d.t;$('cl').textContent=frm.value==='s'?'التركيز (مجم لكل 5 مل)':'التركيز (مجم لكل قرص)';const k=PK[drg.value],s=frm.value==='s';$('pk').value=k[s?1:0]||'';$('pk').parentNode.parentNode.style.display=['prz','egt','mb5'].includes(drg.value)?'none':'';$('pl').textContent=s?'حجم الزجاجة (مل)':'عدد الأقراص في الشريط/العلبة';calc()}
+function pick(){const q=$('q').value.trim().toLowerCase(),m=$('qm');m.textContent='';if(q.length<3)return;let k=Object.keys(A).filter(x=>x.includes(q)).map(x=>A[x])[0]||Object.keys(D).find(x=>D[x].n.toLowerCase().includes(q)||D[x].n.includes($('q').value.trim()));if(!k){m.textContent='لا يوجد اسم مطابق';return}if(!R[par.value].d[k]){m.textContent='هذا الدواء غير مدرج لهذا الطفيل في البروتوكول';return}drg.value=k;m.textContent='تم اختيار: '+D[k].n;fillF()}
+const fr=x=>{const w=Math.floor(x),f=x-w,n={0:'',.25:'ربع',.5:'نصف',.75:'ثلاثة أرباع'}[f];return !w?n:(n?w+' و'+n:''+w)};
+const FQ=p=>p==1?'مرة يوميًا':p==2?'مرتين يوميًا (كل 12 ساعة)':'ثلاث مرات يوميًا (كل 8 ساعات)';
+const DY=d=>d==1?'يوم واحد':d==2?'يومين':d+' أيام';
+const box=(c,t)=>t?`<div class="box ${c}">${t}</div>`:'';
+function calc(){
+const res=$('res'),a=parseFloat($('age').value)*parseFloat($('au').value),w=parseFloat($('wt').value),c=parseFloat($('con').value);
+if(!($('age').value&&$('wt').value)){res.innerHTML=box('o','أدخل السن والوزن لتظهر الجرعة.');return}
+if(!(a>=0&&a<=120&&w>=2&&w<=200)){res.innerHTML=box('e','راجع السن والوزن: الوزن بين 2 و200 كجم.');return}
+if(!(c>0)){res.innerHTML=box('e','أدخل التركيز.');return}
+const pk=par.value,dk=drg.value,r=R[pk].d[dk](a,w),sy=frm.value==='s';
+if(dk==='alb'&&a<2){res.innerHTML=box('e','ألبندازول يستخدم فوق سن السنتين فقط.');return}if(r.e){res.innerHTML=box('e',r.e);return}
+const ws=[],txt=[];if(r.w)ws.push(r.w);let tot=0;
+const sp=$('sp').value;
+if(sp){ws.push('حالة خاصة (حامل/مرضعة): راجع الطبيب قبل الصرف.');if(pk=='sch'||pk=='fas')ws.push('البروتوكول: يؤجل علاج البلهارسيا والفاشيولا في الحمل والرضاعة.');}
+const rows=r.p.map(p=>{const ex=sy?p.mg/c*5:p.mg/c,pz4=dk==='prz',eg=dk==='egt';let u=sy?Math.round(ex*2)/2:(eg?Math.max(.5,Math.floor(ex*2+1e-9)/2):pz4?Math.ceil(ex*4-1e-9)/4:Q(ex));
+if(!sy){if(u<.25){u=.25;ws.push('الجرعة أقل من ربع قرص. يفضل استخدام الشراب.')}else if(!pz4&&!eg&&Math.abs(ex-u)>.1)ws.push(`الجرعة المحسوبة ${ex.toFixed(2)} قرص لا تقسم بدقة، وقربت إلى ${u} قرص.`)}
+const mg=sy?u*c/5:u*c;tot+=u*p.pd*p.d;
+const us=sy?`${u} مل`:`${u} قرص`+(fr(u)&&u%1?` (${fr(u)})`:'');
+txt.push(`${D[dk].n.split(' (')[0]} ${c} مجم${sy?'/5 مل شراب':' أقراص'}: ${us} ${FQ(p.pd)}${p.d==1&&p.pd==1?'، مرة واحدة فقط':' لمدة '+DY(p.d)}${p.l?' ('+p.l+')':''}`);
+return `<div class="ph"><div class="big">${us}</div><div class="meta">${FQ(p.pd)} · لمدة ${DY(p.d)}${p.l?' · '+p.l:''}<br>${pz4||eg?'الجرعة بالضبط: '+(+ex.toFixed(2))+' قرص ≈ '+Math.round(p.mg)+' مجم. الصرف: '+u+' قرص (لأقرب '+(eg?'نصف قرص لتحت':'ربع قرص وبدون نقص عن الجرعة')+')':'الجرعة الواحدة ≈ '+Math.round(mg)+' مجم'}</div></div>`}).join('');
+const tt=sy?`${tot} مل`:`${tot} قرص`,pz=parseFloat($('pk').value);let pc='';if(dk==='prz'||dk==='egt'||dk==='mb5'){pc=`<div class="ph"><div class="big">اصرف: ${tot} قرص${fr(tot)&&tot%1?' ('+fr(tot)+')':''}</div><div class="meta">${dk==='prz'?'يصرف بالقرص لأقرب ربع قرص':'يصرف بالقرص'}</div></div>`;txt.push(`الكمية المصروفة: ${tot} قرص`)}else if(pz>0){const n=Math.ceil(tot/pz-1e-9),u=sy?(n==1?'زجاجة':n==2?'زجاجتان':n<=10?'زجاجات':'زجاجة'):'شريط/علبة',nl=(sy&&n==2)?u:n+' '+u;pc=`<div class="ph"><div class="big">اصرف: ${nl}</div><div class="meta">(${n*pz} ${sy?'مل':'قرص'} في العبوات، والمطلوب ${tt})</div></div>`;txt.push(`الكمية المصروفة: ${nl}`)}else pc=box('w','أدخل '+(sy?'حجم الزجاجة':'عدد الأقراص في الشريط')+' لحساب عدد العبوات.');
+res.innerHTML=`<div class="card"><b>${R[pk].n}</b> · ${D[dk].n}${rows}<div class="meta">إجمالي الكمية للصرف: <b>${tt}</b></div>${pc}${ws.map(x=>box('w',x)).join('')}${box('o',r.n||'')}<label>نص للكتابة على التذكرة</label><div class="rx" id="rx">${txt.join('\n')}</div><button id="cp" type="button">نسخ النص</button></div>`;
+$('cp').onclick=()=>{const t=$('rx').textContent;try{navigator.clipboard.writeText(t).then(()=>$('cp').textContent='تم النسخ',()=>sel())}catch(e){sel()}function sel(){const g=getSelection(),n=document.createRange();n.selectNodeContents($('rx'));g.removeAllRanges();g.addRange(n);$('cp').textContent='حدد النص وانسخه'}}}
+par.onchange=()=>fillD(drg.value);drg.onchange=fillF;let fm=0;frm.onchange=()=>{fm=1;setC()};
+function ag(){const a=parseFloat($('age').value)*parseFloat($('au').value);if(!fm&&a>=0&&D[drg.value].s){const w=a<12?'s':'t';if(frm.value!==w){frm.value=w;setC();return}}calc()}
+['wt','sp','con','pk'].forEach(i=>$(i).oninput=calc);['age','au'].forEach(i=>$(i).oninput=ag);
+fillD();
+</script>
+</body>
+</html>
